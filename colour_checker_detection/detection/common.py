@@ -1319,7 +1319,7 @@ def sample_colour_checker(
     sampled_colours = swatch_colours(colour_checker, masks)
 
     # TODO: Update when "Colour" 0.4.5 is released.
-'''
+    """
     if settings.reference_values is None:
         usage_warning(
             "Cannot compute the colour checker orientation because the "
@@ -1356,8 +1356,8 @@ def sample_colour_checker(
                 sampled_colours = candidate_sampled_colours
                 colour_checker = colour_checker_candidate
                 quadrilateral = candidate_quadrilateral
+    """
 
-'''
     colour_checker = cast("NDArrayFloat", colour_checker)
 
 
