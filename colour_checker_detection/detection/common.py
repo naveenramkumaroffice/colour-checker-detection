@@ -425,6 +425,7 @@ def reformat_image(
 
     width, height = image.shape[1], image.shape[0]
     if width < height:
+        print("rotating the image by 90 degrees in the reformat images")
         image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
         height, width = width, height
 
@@ -548,6 +549,7 @@ def transform_image(
         dtype=np.float32,
     )
     scale_transform = np.vstack((scale_transform, [0, 0, 1]))
+    print("rotations in the transforms are", rotation)
 
     rotation_transform = cv2.getRotationMatrix2D((center_x, center_y), -rotation, 1)
     rotation_transform = np.vstack((rotation_transform, [0, 0, 1]))
