@@ -1301,8 +1301,9 @@ def sample_colour_checker(
     swatches_vertical = settings.swatches_vertical
     working_width = settings.working_width
     working_height = settings.working_height
-
+    print("before the perspective transforms")
     transform = cv2.getPerspectiveTransform(quadrilateral, rectangle)
+    print("the transforms are", transform)
     colour_checker = cv2.warpPerspective(
         image,
         transform,
@@ -1311,6 +1312,7 @@ def sample_colour_checker(
     )
 
     if settings.transform:
+        print("we are transforming the images in the settings transforms")
         colour_checker = transform_image(colour_checker, **settings.transform)
 
     masks = swatch_masks(
