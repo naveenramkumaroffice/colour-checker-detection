@@ -428,6 +428,8 @@ def reformat_image(
         print("rotating the image by 90 degrees in the reformat images")
         image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
         height, width = width, height
+    else:
+        print("there are the no rotations")
 
     ratio = width / target_width
 
