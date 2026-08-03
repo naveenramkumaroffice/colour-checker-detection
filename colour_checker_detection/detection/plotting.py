@@ -105,6 +105,7 @@ def plot_detection_results(
         # Plot detected colour checker with masked swatches
         plot_image(
             CONSTANTS_COLOUR_STYLE.colour.colourspace.cctf_encoding(colour_checker),
+            text_kwargs={"text": "these colours", "color": "white"},
         )
 
         # Plot extracted swatch colours as grid
