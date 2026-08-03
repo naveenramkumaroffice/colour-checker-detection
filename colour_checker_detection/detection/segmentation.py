@@ -307,13 +307,14 @@ def segmenter_default(
             [10...,  2...],
             [10...,  7...]]]...)
     """
-
+    
+    print("in the segmenters functions")
     settings = Structure(**SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC)
     settings.update(**kwargs)
 
     if apply_cctf_encoding:
         image = cctf_encoding(image)
-
+    print("before the reformats images")
     image = reformat_image(image, settings.working_width, settings.interpolation_method)
 
     width, height = image.shape[1], image.shape[0]
