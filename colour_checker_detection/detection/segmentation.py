@@ -360,7 +360,22 @@ def segmenter_default(
         settings.swatches_count_minimum,
         settings.swatches_count_maximum,
     )
-
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(8,8))
+    plt.imshow(rectangles)
+    plt.title("rectangles")
+    plt.axis("off")
+    plt.show()
+    plt.figure(figsize=(8,8))
+    plt.imshow(clusters)
+    plt.title("clusters")
+    plt.axis("off")
+    plt.show()
+    plt.figure(figsize=(8,8))
+    plt.imshow(swatches)
+    plt.title("swatches")
+    plt.axis("off")
+    plt.show()
     if additional_data:
         return DataSegmentationColourCheckers(
             rectangles,
