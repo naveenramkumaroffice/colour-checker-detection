@@ -360,6 +360,7 @@ def segmenter_default(
         settings.swatches_count_minimum,
         settings.swatches_count_maximum,
     )
+    """
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(rectangles)
@@ -376,6 +377,7 @@ def segmenter_default(
     plt.title("swatches")
     plt.axis("off")
     plt.show()
+    """
     if additional_data:
         return DataSegmentationColourCheckers(
             rectangles,
