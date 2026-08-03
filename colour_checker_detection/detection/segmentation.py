@@ -739,7 +739,7 @@ def detect_colour_checkers_segmentation(
            [  5.65953329e-02,   3.79680507e-02,   1.81693807e-02],
            [  2.30163466e-02,   1.61432363e-02,   7.43864896e-03]]...),)
     """
-
+    print("inside the functions")
     if segmenter_kwargs is None:
         segmenter_kwargs = {}
 
