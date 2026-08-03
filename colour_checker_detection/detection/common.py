@@ -666,7 +666,8 @@ def detect_contours(
     )
 
     contours = cast("Tuple[NDArrayInt]", contours)
-
+    print("the final images after the finding the contours")
+    cv2.imshow(image_k)
     if additional_data:
         return contours, image_k
     return contours
