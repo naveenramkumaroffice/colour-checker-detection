@@ -541,7 +541,12 @@ def extractor_segmentation(
     )
 
     colour_checkers_data = []
-
+    print("working widths", settings["working_width"])
+    print("working heights", working_height)
+    print("source quadrilaterals")
+    for quadrilateral in segmentation_data.rectangles:
+        print(quadrilateral)
+    print("destinations", rectangle)
     if hasattr(segmentation_data, "rectangles"):
         colour_checkers_data.extend(
             sample_colour_checker(image, quadrilateral, rectangle, samples, **settings)
