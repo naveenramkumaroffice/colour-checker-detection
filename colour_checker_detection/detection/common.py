@@ -1320,12 +1320,18 @@ def sample_colour_checker(
     plt.figure(figsize=(8,8))
     plt.imshow(image)
     plt.scatter(quadrilateral[:, 0], quadrilateral[:, 1], color='red', s=100, edgecolors='black', zorder=5)
+    for i, (x, y) in enumerate(quadrilateral):
+    # Label each point with an offset so the text doesn't overlap the dot
+        plt.text(x + 15, y - 15, f"P{i}: ({x}, {y})", color='lime', fontsize=10, fontweight='bold', bbox=dict(facecolor='black', alpha=0.6, boxstyle='round,pad=0.3'))
     plt.title("before the transforms")
     plt.axis("off")
     plt.show()
     plt.figure(figsize=(8,8))
     plt.imshow(colour_checker)
     plt.scatter(rectangle[:, 0], rectangle[:, 1], color='green', s=100, edgecolors='black', zorder=5)
+    for i, (x, y) in enumerate(rectangle):
+    # Label each point with an offset so the text doesn't overlap the dot
+        plt.text(x + 15, y - 15, f"P{i}: ({x}, {y})", color='lime', fontsize=10, fontweight='bold', bbox=dict(facecolor='black', alpha=0.6, boxstyle='round,pad=0.3'))
     plt.title("before the transforms")
     plt.axis("off")
     plt.show()
