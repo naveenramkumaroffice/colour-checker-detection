@@ -1338,7 +1338,6 @@ def sample_colour_checker(
         (working_width, working_height),
         flags=settings.interpolation_method,
     )
-    """
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image)
@@ -1358,7 +1357,6 @@ def sample_colour_checker(
     plt.title("before the transforms")
     plt.axis("off")
     plt.show()
-    """
     if settings.transform:
         print("we are transforming the images in the settings transforms")
         colour_checker = transform_image(colour_checker, **settings.transform)
