@@ -881,13 +881,17 @@ def cluster_swatches(
 
     contours, _ = cv2.findContours(image_c, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     print("in these clusterings")
+    import matplotlib.pyplot as plt
     for contour in contours:
         print("the contours are these", contour)
         rect = cv2.minAreaRect(contour)
-        print(rect)
+        print("the rectangles are",rect)
         box = cv2.boxPoints(rect)
-        print(box)
-    
+        print("the boxes are", box)
+        box = np.int0(box)
+        cv2.drawContours(image,[box],0,(0,0,255),2)
+        plt.figure(figsize=(8,8))
+        plt.imshow(image)
     return as_int32_array(
         [cv2.boxPoints(cv2.minAreaRect(contour)) for contour in contours]
     )
