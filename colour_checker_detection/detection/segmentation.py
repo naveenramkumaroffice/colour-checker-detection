@@ -328,19 +328,20 @@ def segmenter_default(
     # Filtering squares/swatches contours.
     squares = []
     for swatch_contour in quadrilateralise_contours(contours):
+        print("these in the squares are", swatch_contours)
         if minimum_area < cv2.contourArea(swatch_contour) < maximum_area and is_square(
             swatch_contour
         ):
             squares.append(  # noqa: PERF401
                 as_int32_array(cv2.boxPoints(cv2.minAreaRect(swatch_contour)))
             )
-
+    print("these squares are", squares)
     swatches = as_int32_array(remove_stacked_contours(squares))
-
+    print("these swatches are these", swatches)
     clusters = cluster_swatches(
         as_float32_array(image), swatches, settings.swatch_contour_scale
     )
-
+    print("these clusters are these", clusters)
     # Filtering clusters using their aspect ratio.
     filtered_clusters = []
     for cluster in clusters[:]:
