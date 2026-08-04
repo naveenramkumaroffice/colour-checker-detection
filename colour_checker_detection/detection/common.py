@@ -888,7 +888,7 @@ def cluster_swatches(
         print("the rectangles are",rect)
         box = cv2.boxPoints(rect)
         print("the boxes are", box)
-        box = np.int0(box)
+        box = np.intp(box)
         cv2.drawContours(image,[box],0,(0,0,255),2)
         plt.figure(figsize=(8,8))
         plt.imshow(image)
