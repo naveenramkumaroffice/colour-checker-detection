@@ -667,14 +667,14 @@ def detect_contours(
 
     contours = cast("Tuple[NDArrayInt]", contours)
     print("the final images after the finding the contours")
-    """
+    
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image_k)
     plt.title("these finals images")
     plt.axis("off")
     plt.show()
-    """
+    
     if additional_data:
         return contours, image_k
     return contours
@@ -883,7 +883,7 @@ def cluster_swatches(
 
     contours, _ = cv2.findContours(image_c, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     print("in these clusterings")
-    #import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt
     rect=[]
     for contour in contours:
         x, y, w, h = cv2.boundingRect(contour)
@@ -894,17 +894,18 @@ def cluster_swatches(
         rect.append(thepoints)
         #cv.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
         #print("the contours are these", contour)
-        #rect = cv2.minAreaRect(contour)
+        rect3 = cv2.minAreaRect(contour)
         #print("the rectangles are",rect)
-        #box = cv2.boxPoints(rect)
-        #box3 = cv2.boxPoints(rectangle3)
+        box = cv2.boxPoints(rect3)
+        box3 = cv2.boxPoints(rect[-1])
         #print("the boxes are", box)
-        #box = np.intp(box)
-        #box3 = np.intp(box3)
-        #cv2.drawContours(image,[box],0,(0,0,255),2)
-        #cv2.drawContours(image,[box3],0,(0,255,0),2)
-        #plt.figure(figsize=(8,8))
-        #plt.imshow(image)
+        box = np.intp(box)
+        box3 = np.intp(box3)
+        cv2.drawContours(image,[box],0,(0,0,255),2)
+        cv2.drawContours(image,[box3],0,(0,255,0),2)
+        plt.scatter(contour[:, 0], contour[:, 1], color='green', s=100, edgecolors='black', zorder=5)
+        plt.figure(figsize=(8,8))
+        plt.imshow(image)
         #thepoints=cv2.boxPoints(rect[-1])
     return as_int32_array(
         [rectangles for rectangles in rect]
@@ -1341,7 +1342,7 @@ def sample_colour_checker(
         (working_width, working_height),
         flags=settings.interpolation_method,
     )
-    """
+    
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image)
@@ -1361,7 +1362,7 @@ def sample_colour_checker(
     plt.title("before the transforms")
     plt.axis("off")
     plt.show()
-    """
+
     if settings.transform:
         print("we are transforming the images in the settings transforms")
         colour_checker = transform_image(colour_checker, **settings.transform)
