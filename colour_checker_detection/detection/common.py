@@ -667,12 +667,14 @@ def detect_contours(
 
     contours = cast("Tuple[NDArrayInt]", contours)
     print("the final images after the finding the contours")
+    """
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image_k)
     plt.title("these finals images")
     plt.axis("off")
     plt.show()
+    """
     if additional_data:
         return contours, image_k
     return contours
@@ -881,12 +883,13 @@ def cluster_swatches(
 
     contours, _ = cv2.findContours(image_c, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     print("in these clusterings")
-    import matplotlib.pyplot as plt
+    #import matplotlib.pyplot as plt
+    rect=[]
     for contour in contours:
         x, y, w, h = cv2.boundingRect(contour)
         cx = x + (w / 2.0)
         cy = y + (h / 2.0)
-        rectangle3 = ((cx, cy), (w, h), 0.0)
+        rect.append(((cx, cy), (w, h), 0.0))
         #cv.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
         print("the contours are these", contour)
         rect = cv2.minAreaRect(contour)
@@ -896,12 +899,12 @@ def cluster_swatches(
         print("the boxes are", box)
         box = np.intp(box)
         box3 = np.intp(box3)
-        cv2.drawContours(image,[box],0,(0,0,255),2)
-        cv2.drawContours(image,[box3],0,(0,255,0),2)
-        plt.figure(figsize=(8,8))
-        plt.imshow(image)
+        #cv2.drawContours(image,[box],0,(0,0,255),2)
+        #cv2.drawContours(image,[box3],0,(0,255,0),2)
+        #plt.figure(figsize=(8,8))
+        #plt.imshow(image)
     return as_int32_array(
-        [cv2.boxPoints(cv2.minAreaRect(contour)) for contour in contours]
+        [cv2.boxPoints(rectangles) for rectangles in rect]
     )
 
 
@@ -1335,6 +1338,7 @@ def sample_colour_checker(
         (working_width, working_height),
         flags=settings.interpolation_method,
     )
+    """
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image)
@@ -1354,6 +1358,7 @@ def sample_colour_checker(
     plt.title("before the transforms")
     plt.axis("off")
     plt.show()
+    """
     if settings.transform:
         print("we are transforming the images in the settings transforms")
         colour_checker = transform_image(colour_checker, **settings.transform)
