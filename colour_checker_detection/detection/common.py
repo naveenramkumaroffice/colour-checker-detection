@@ -889,7 +889,9 @@ def cluster_swatches(
         x, y, w, h = cv2.boundingRect(contour)
         cx = x + (w / 2.0)
         cy = y + (h / 2.0)
-        rect.append(((cx, cy), (w, h), 0.0))
+        thepoints=cv2.boxPoints(((cx, cy), (w, h), 0.0))
+        thepoints[0], thepoints[1], thepoints[2], thepoints[3]=thepoints[2], thepoints[3], thepoints[0], thepoints[1]
+        rect.append(thepoints)
         #cv.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
         #print("the contours are these", contour)
         #rect = cv2.minAreaRect(contour)
@@ -903,8 +905,9 @@ def cluster_swatches(
         #cv2.drawContours(image,[box3],0,(0,255,0),2)
         #plt.figure(figsize=(8,8))
         #plt.imshow(image)
+        #thepoints=cv2.boxPoints(rect[-1])
     return as_int32_array(
-        [cv2.boxPoints(rectangles) for rectangles in rect]
+        [rectangles for rectangles in rect]
     )
 
 
