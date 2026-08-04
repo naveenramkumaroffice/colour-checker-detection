@@ -324,7 +324,7 @@ def segmenter_default(
     maximum_area = width * height / settings.swatches
 
     contours, image_k = detect_contours(image, True, **settings)  # pyright: ignore
-
+    print("these contours are", contours)
     # Filtering squares/swatches contours.
     squares = []
     for swatch_contour in quadrilateralise_contours(contours):
@@ -360,6 +360,7 @@ def segmenter_default(
         settings.swatches_count_minimum,
         settings.swatches_count_maximum,
     )
+    print("the clusters after the filterings are", rectangles)
     """
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
@@ -545,6 +546,7 @@ def extractor_segmentation(
     print("working heights", working_height)
     print("source quadrilaterals")
     for quadrilateral in segmentation_data.rectangles:
+        print("-------------------")
         print(quadrilateral)
     print("destinations", rectangle)
     if hasattr(segmentation_data, "rectangles"):
