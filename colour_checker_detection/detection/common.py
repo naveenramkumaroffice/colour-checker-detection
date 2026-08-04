@@ -883,7 +883,10 @@ def cluster_swatches(
     print("in these clusterings")
     import matplotlib.pyplot as plt
     for contour in contours:
-        rectangle3 = cv2.boundingRect(contour)
+        x, y, w, h = cv2.boundingRect(contour)
+        cx = x + (w / 2.0)
+        cy = y + (h / 2.0)
+        rectangle3 = ((cx, cy), (w, h), 0.0)
         #cv.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
         print("the contours are these", contour)
         rect = cv2.minAreaRect(contour)
