@@ -807,7 +807,7 @@ def detect_colour_checkers_segmentation(
             **{**extractor_kwargs, **kwargs},
         )
     )
-    """
+    
     if show:
         plot_detection_results(
             tuple(colour_checkers_data),
@@ -816,7 +816,7 @@ def detect_colour_checkers_segmentation(
             segmentation_colour_checkers_data,
             image,
         )
-    """
+    
     if additional_data:
         return tuple(colour_checkers_data)
 
