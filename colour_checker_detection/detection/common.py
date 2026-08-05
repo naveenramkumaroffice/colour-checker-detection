@@ -904,9 +904,10 @@ def cluster_swatches(
         cv2.drawContours(image,[box],0,(0,0,255),2)
         cv2.drawContours(image,[thepoints],0,(0,255,0),2)
         contour = contour.reshape(-1, 2)
-        plt.scatter(contour[:, 0], contour[:, 1], color='green', s=100, edgecolors='black', zorder=5)
+        #plt.scatter(contour[:, 0], contour[:, 1], color='green', s=100, edgecolors='black', zorder=5)
         plt.figure(figsize=(8,8))
         plt.imshow(image)
+        plt.scatter(contour[:, 0], contour[:, 1], color='green', s=100, edgecolors='black', zorder=5)
         #thepoints=cv2.boxPoints(rect[-1])
     return as_int32_array(
         [rectangles for rectangles in rect]
