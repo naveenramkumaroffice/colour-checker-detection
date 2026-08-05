@@ -355,7 +355,7 @@ def segmenter_default(
         x, y, w, h = cv2.boundingRect(cluster)
         cx = x + (w / 2.0)
         cy = y + (h / 2.0)
-        rectangle=((cx, cy), (w, h), 0.0))
+        rectangle=((cx, cy), (w, h), 0.0)
         width = max(rectangle[1][0], rectangle[1][1])
         height = min(rectangle[1][0], rectangle[1][1])
         ratio = width / height
