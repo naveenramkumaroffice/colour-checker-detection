@@ -352,7 +352,10 @@ def segmenter_default(
     plt.title("check before the filterings")
     for cluster in clusters[:]:
         print("going into the minarearect", cluster)
-        rectangle = cv2.minAreaRect(cluster)
+        x, y, w, h = cv2.boundingRect(cluster)
+        cx = x + (w / 2.0)
+        cy = y + (h / 2.0)
+        rectangle=((cx, cy), (w, h), 0.0))
         width = max(rectangle[1][0], rectangle[1][1])
         height = min(rectangle[1][0], rectangle[1][1])
         ratio = width / height
