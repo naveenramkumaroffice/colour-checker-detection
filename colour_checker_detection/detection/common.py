@@ -890,7 +890,7 @@ def cluster_swatches(
         cx = x + (w / 2.0)
         cy = y + (h / 2.0)
         thepoints=cv2.boxPoints(((cx, cy), (w, h), 0.0))
-        #thepoints[0], thepoints[1], thepoints[2], thepoints[3]=thepoints[2], thepoints[3], thepoints[0], thepoints[1]
+        thepoints[0], thepoints[1], thepoints[2], thepoints[3]=thepoints[2], thepoints[3], thepoints[0], thepoints[1]
         rect.append(thepoints)
         #cv.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
         print("the contours are these", contour)
