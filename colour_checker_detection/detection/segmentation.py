@@ -344,12 +344,14 @@ def segmenter_default(
     print("these clusters are these", clusters)
     # Filtering clusters using their aspect ratio.
     filtered_clusters = []
+    """
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image)
     clusters3 = clusters.reshape(-1, 2)
     plt.scatter(clusters3[:, 0], clusters3[:, 1], color='red', s=100, edgecolors='black', zorder=5)
     plt.title("check before the filterings")
+    """
     for cluster in clusters[:]:
         print("going into the minarearect", cluster)
         x, y, w, h = cv2.boundingRect(cluster)
