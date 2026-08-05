@@ -324,24 +324,24 @@ def segmenter_default(
     maximum_area = width * height / settings.swatches
 
     contours, image_k = detect_contours(image, True, **settings)  # pyright: ignore
-    print("these contours are", contours)
+    #print("these contours are", contours)
     # Filtering squares/swatches contours.
     squares = []
     for swatch_contour in quadrilateralise_contours(contours):
-        print("these in the squares are", swatch_contour)
+        #print("these in the squares are", swatch_contour)
         if minimum_area < cv2.contourArea(swatch_contour) < maximum_area and is_square(
             swatch_contour
         ):
             squares.append(  # noqa: PERF401
                 as_int32_array(cv2.boxPoints(cv2.minAreaRect(swatch_contour)))
             )
-    print("these squares are", squares)
+    #print("these squares are", squares)
     swatches = as_int32_array(remove_stacked_contours(squares))
-    print("these swatches are these", swatches)
+    #print("these swatches are these", swatches)
     clusters = cluster_swatches(
         as_float32_array(image), swatches, settings.swatch_contour_scale
     )
-    print("these clusters are these", clusters)
+    #print("these clusters are these", clusters)
     # Filtering clusters using their aspect ratio.
     filtered_clusters = []
     """
@@ -353,7 +353,7 @@ def segmenter_default(
     plt.title("check before the filterings")
     """
     for cluster in clusters[:]:
-        print("going into the minarearect", cluster)
+        #print("going into the minarearect", cluster)
         x, y, w, h = cv2.boundingRect(cluster)
         cx = x + (w / 2.0)
         cy = y + (h / 2.0)
@@ -361,10 +361,10 @@ def segmenter_default(
         width = max(rectangle[1][0], rectangle[1][1])
         height = min(rectangle[1][0], rectangle[1][1])
         ratio = width / height
-        print("minimum",settings.aspect_ratio_minimum, "maximum", settings.aspect_ratio_maximum, "ratios", ratio)
+        #print("minimum",settings.aspect_ratio_minimum, "maximum", settings.aspect_ratio_maximum, "ratios", ratio)
         #if settings.aspect_ratio_minimum < ratio < settings.aspect_ratio_maximum:
         filtered_clusters.append(as_int32_array(cluster))
-    print("the filtered clusters arrays", filtered_clusters)
+    #print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
     # Filtering swatches within cluster.
@@ -374,7 +374,7 @@ def segmenter_default(
         settings.swatches_count_minimum,
         settings.swatches_count_maximum,
     )
-    print("the clusters after the filterings are", rectangles)
+    #print("the clusters after the filterings are", rectangles)
     """
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
@@ -559,10 +559,10 @@ def extractor_segmentation(
     print("working widths", settings["working_width"])
     print("working heights", working_height)
     print("source quadrilaterals")
-    for quadrilateral in segmentation_data.rectangles:
-        print("-------------------")
-        print(quadrilateral)
-    print("destinations", rectangle)
+    #for quadrilateral in segmentation_data.rectangles:
+    #    print("-------------------")
+    #    print(quadrilateral)
+    #print("destinations", rectangle)
     if hasattr(segmentation_data, "rectangles"):
         colour_checkers_data.extend(
             sample_colour_checker(image, quadrilateral, rectangle, samples, **settings)
