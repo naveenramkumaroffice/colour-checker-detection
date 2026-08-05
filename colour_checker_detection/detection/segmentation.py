@@ -347,8 +347,8 @@ def segmenter_default(
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image)
-    clusters = clusters.reshape(-1, 2)
-    plt.scatter(clusters[:, 0], clusters[:, 1], color='red', s=100, edgecolors='black', zorder=5)
+    clusters3 = clusters.reshape(-1, 2)
+    plt.scatter(clusters3[:, 0], clusters3[:, 1], color='red', s=100, edgecolors='black', zorder=5)
     plt.title("check before the filterings")
     for cluster in clusters[:]:
         print("going into the minarearect", cluster)
