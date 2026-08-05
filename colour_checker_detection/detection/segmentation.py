@@ -356,7 +356,7 @@ def segmenter_default(
         width = max(rectangle[1][0], rectangle[1][1])
         height = min(rectangle[1][0], rectangle[1][1])
         ratio = width / height
-
+        print("minimum",settings.aspect_ratio_minimum, "maximum", settings.aspect_ratio_maximum, "ratios", ratio)
         if settings.aspect_ratio_minimum < ratio < settings.aspect_ratio_maximum:
             filtered_clusters.append(as_int32_array(cluster))
     print("the filtered clusters arrays", filtered_clusters)
