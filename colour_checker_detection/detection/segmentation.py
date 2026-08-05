@@ -344,7 +344,14 @@ def segmenter_default(
     print("these clusters are these", clusters)
     # Filtering clusters using their aspect ratio.
     filtered_clusters = []
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(8,8))
+    plt.imshow(image)
+    clusters = clusters.reshape(-1, 2)
+    plt.scatter(clusters[:, 0], clusters[:, 1], color='red', s=100, edgecolors='black', zorder=5)
+    plt.title("check before the filterings")
     for cluster in clusters[:]:
+        print("going into the minarearect", cluster)
         rectangle = cv2.minAreaRect(cluster)
         width = max(rectangle[1][0], rectangle[1][1])
         height = min(rectangle[1][0], rectangle[1][1])
@@ -352,6 +359,7 @@ def segmenter_default(
 
         if settings.aspect_ratio_minimum < ratio < settings.aspect_ratio_maximum:
             filtered_clusters.append(as_int32_array(cluster))
+    print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
     # Filtering swatches within cluster.
