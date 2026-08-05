@@ -548,10 +548,10 @@ def extractor_segmentation(
 
     rectangle = as_int32_array(
         [
-            [settings["working_width"], 0],
-            [settings["working_width"], working_height],
             [0, working_height],
             [0, 0],
+            [settings["working_width"], 0],
+            [settings["working_width"], working_height],
         ]
     )
 
