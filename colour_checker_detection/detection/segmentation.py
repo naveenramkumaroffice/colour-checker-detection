@@ -839,7 +839,14 @@ def detect_colour_checkers_segmentation(
             **{**extractor_kwargs, **kwargs},
         )
     )
-    
+    import matplotlib.pyplot as plt
+
+    # Directly plot your high-precision array
+    plt.figure(figsize=(10, 8))
+    plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("images before the plottings")
+    plt.show()
     if show:
         plot_detection_results(
             tuple(colour_checkers_data),
