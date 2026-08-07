@@ -553,9 +553,9 @@ def extractor_segmentation(
     """
 
     image = cast("NDArrayReal", image)
-
-    if apply_cctf_decoding:
-        image = cctf_decoding(image)
+    print("cctfs in the extractors")
+    #if apply_cctf_decoding:
+    #    image = cctf_decoding(image)
 
     settings = SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC.copy()
     settings.update(kwargs)
@@ -814,9 +814,9 @@ def detect_colour_checkers_segmentation(
             image,
             DTYPE_FLOAT_DEFAULT.__name__,  # pyright: ignore
         )
-
-    if apply_cctf_decoding:
-        image = cctf_decoding(image)
+    print("cctfs in the mains")
+    #if apply_cctf_decoding:
+    #    image = cctf_decoding(image)
 
     image = cast("NDArrayReal", image)
     print("before the reformats functions")
