@@ -419,6 +419,7 @@ def reformat_image(
     """
 
     image = np.asarray(image)
+    """
     import matplotlib.pyplot as plt
 
 # Directly plot your high-precision array
@@ -427,6 +428,7 @@ def reformat_image(
     plt.axis("off")    # Remove pixel coordinate borders
     plt.title("images")
     plt.show()
+    """
     if image.ndim == 3:
         image = image[..., :3]
 
