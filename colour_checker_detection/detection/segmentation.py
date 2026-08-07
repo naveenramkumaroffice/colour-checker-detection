@@ -311,7 +311,14 @@ def segmenter_default(
     print("in the segmenters functions")
     settings = Structure(**SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC)
     settings.update(**kwargs)
+    import matplotlib.pyplot as plt
 
+# Directly plot your high-precision array
+    plt.figure(figsize=(10, 8))
+    plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("the images")
+    plt.show()
     if apply_cctf_encoding:
         image = cctf_encoding(image)
     print("before the reformats images")
