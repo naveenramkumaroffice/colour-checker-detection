@@ -319,6 +319,7 @@ def segmenter_default(
     #plt.axis("off")    # Remove pixel coordinate borders
     #plt.title("the images")
     #plt.show()
+    print("the cctfs")
     #if apply_cctf_encoding:
     #    print("the encodings")
     #    image = cctf_encoding(image)
