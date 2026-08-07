@@ -1332,9 +1332,16 @@ def sample_colour_checker(
     >>> colour_checkers_data.colour_checker.shape
     (960, 1440, 3)
     """
-
+    print("insides the samples")
     image = as_array(image)
+    import matplotlib.pyplot as plt
 
+    # Directly plot your high-precision array
+    plt.figure(figsize=(10, 8))
+    plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("images after the arrays")
+    plt.show()
     settings = Structure(**SETTINGS_DETECTION_COLORCHECKER_CLASSIC)
     settings.update(**kwargs)
 
@@ -1430,7 +1437,14 @@ def sample_colour_checker(
 
     colour_checker = cast("NDArrayFloat", colour_checker)
 
+    import matplotlib.pyplot as plt
 
+    # Directly plot your high-precision array
+    plt.figure(figsize=(10, 8))
+    plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("images in the ends")
+    plt.show()
     return DataDetectionColourChecker(
         sampled_colours, masks, colour_checker, quadrilateral
     )
