@@ -815,8 +815,9 @@ def detect_colour_checkers_segmentation(
             DTYPE_FLOAT_DEFAULT.__name__,  # pyright: ignore
         )
     print("cctfs in the mains")
-    #if apply_cctf_decoding:
-    #    image = cctf_decoding(image)
+    if apply_cctf_decoding:
+        print("the cctfs in the mains before giving to the functions")
+        image = cctf_decoding(image)
 
     image = cast("NDArrayReal", image)
     print("before the reformats functions")
