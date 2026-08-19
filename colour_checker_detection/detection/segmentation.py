@@ -344,7 +344,7 @@ def segmenter_default(
 
     contours, image_k = detect_contours(image, True, **settings)  # pyright: ignore
     print("these contours are", contours)
-    plt.imshow(img_rgb)
+    plt.imshow(image)
 
 # 3. Loop through and plot the points of each contour
     for cnt in contours:
