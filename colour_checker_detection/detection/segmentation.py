@@ -367,7 +367,7 @@ def segmenter_default(
     # Filtering squares/swatches contours.
     squares = []
     for swatch_contour in quadrilateralise_contours(contours):
-        #print("these in the squares are", swatch_contour)
+        print("these in the squares are", swatch_contour)
         if minimum_area < cv2.contourArea(swatch_contour) < maximum_area and is_square(
             swatch_contour
         ):
