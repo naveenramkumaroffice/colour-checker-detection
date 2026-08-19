@@ -311,7 +311,7 @@ def segmenter_default(
     print("in the segmenters functions")
     settings = Structure(**SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC)
     settings.update(**kwargs)
-    #import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt
 
     # Directly plot your high-precision array
     #plt.figure(figsize=(10, 8))
@@ -344,6 +344,26 @@ def segmenter_default(
 
     contours, image_k = detect_contours(image, True, **settings)  # pyright: ignore
     print("these contours are", contours)
+    plt.imshow(img_rgb)
+
+# 3. Loop through and plot the points of each contour
+    for cnt in contours:
+        # Squeeze changes the shape from (N, 1, 2) to (N, 2)
+        points = cnt.squeeze()
+        
+        # Handle single isolated points safely
+        if points.ndim == 1:
+            x, y = points[0], points[1]
+        else:
+            x = points[:, 0]
+            y = points[:, 1]
+        
+        # Plot as individual dots (s controls the marker size)
+        plt.scatter(x, y, color='cyan', s=2, marker='o')
+    
+    # 3. Show the final plot
+    plt.axis('off')  # Removes the axis grid/pixel values
+    plt.show()
     # Filtering squares/swatches contours.
     squares = []
     for swatch_contour in quadrilateralise_contours(contours):
