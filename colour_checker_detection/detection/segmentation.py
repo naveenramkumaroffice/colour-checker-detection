@@ -343,7 +343,7 @@ def segmenter_default(
     maximum_area = width * height / settings.swatches
 
     contours, image_k = detect_contours(image, True, **settings)  # pyright: ignore
-    #print("these contours are", contours)
+    print("these contours are", contours)
     # Filtering squares/swatches contours.
     squares = []
     for swatch_contour in quadrilateralise_contours(contours):
