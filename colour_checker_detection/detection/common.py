@@ -434,7 +434,7 @@ def reformat_image(
 
     width, height = image.shape[1], image.shape[0]
     if width<height:
-        #print("rotating the image by 90 degrees in the reformat images")
+        print("nos rotating the image by 90 degrees in the reformat images")
         #image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
         #height, width = width, height
     else:
