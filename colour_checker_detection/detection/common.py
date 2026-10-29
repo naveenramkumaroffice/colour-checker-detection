@@ -273,7 +273,7 @@ def swatch_masks(
            [ 5,  7,  9, 11],
            [ 5,  7, 13, 15]]...)
     """
-
+    print("the number of the samples in the swatches masks are ", samples)
     samples_half = max(samples / 2, 1)
 
     masks = []
