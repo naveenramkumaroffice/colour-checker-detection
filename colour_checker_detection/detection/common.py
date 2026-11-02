@@ -274,6 +274,8 @@ def swatch_masks(
            [ 5,  7, 13, 15]]...)
     """
     print("the number of the samples in the swatches masks are ", samples)
+    print("the images widths and heights are ", width, height)
+    print("the horizontals and verticals swatches are", swatches_h, swatches_v)
     samples_half = max(samples / 2, 1)
 
     masks = []
