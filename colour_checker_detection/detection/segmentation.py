@@ -589,26 +589,26 @@ def extractor_segmentation(
     #if apply_cctf_decoding:
     #    image = cctf_decoding(image)
 
-    #settings = SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC.copy()
-    #settings.update(kwargs)
-    settings = Structure(**SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC)
-    settings.update(**kwargs)
-    working_height = int(settings.working_width / settings.aspect_ratio)
+    settings = SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC.copy()
+    settings.update(kwargs)
+    #settings = Structure(**SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC)
+    #settings.update(**kwargs)
+    working_height = int(settings["working_width"] / settings["aspect_ratio"])
     image = reformat_image(
-        image, settings.working_width, settings.interpolation_method
+        image, settings["working_width"], settings["interpolation_method"]
     )
 
     rectangle = as_int32_array(
         [
             [0, working_height],
             [0, 0],
-            [settings.working_width, 0],
-            [settings.working_width, working_height],
+            [settings["working_width"], 0],
+            [settings["working_width"], working_height],
         ]
     )
 
     colour_checkers_data = []
-    print("working widths", settings.working_width)
+    print("working widths", settings["working_width"])
     print("working heights", working_height)
     print("source quadrilaterals")
     #for quadrilateral in segmentation_data.rectangles:
