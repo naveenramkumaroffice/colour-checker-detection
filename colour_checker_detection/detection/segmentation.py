@@ -144,8 +144,8 @@ if is_documentation_building():  # pragma: no cover
     SETTINGS_SEGMENTATION_COLORCHECKER_NANO.__doc__ = """
 Settings for the segmentation of the *X-Rite* *ColorChecker Nano**.
 """
-widths=[settings.working_width, settings.working_height]
-horizontals=[settings.swatches_horizontal, settings.swatches_vertical]
+#widths=[settings.working_width, settings.working_height]
+#horizontals=[settings.swatches_horizontal, settings.swatches_vertical]
 @typing.overload
 def segmenter_default(
     image: ArrayLike,
@@ -411,10 +411,10 @@ def segmenter_default(
         filtered_clusters.append(as_int32_array(cluster))
     print("the maximums widths and heights are ", themaximumswidths, themaximumsheights)
     if(themaximumswidths<themaximumsheights):
-        widths[0], widths[1]=widths[1], widths[0]
-        horizontals[0], horizontals[1]=horizontals[1], horizontals[0]
-    print("these settings widths and heights ", widths[0], widths[1])
-    print("these horizontals ", horizontals[0], horizontals[1])
+        settings.working_width, settings.working_height=settings.working_height, settings.working_width
+        settings.swatches_horizontal, settings.swatches_vertical=settings.swatches_vertical, settings.swatches_horizontal
+    print("these settings widths and heights ", settings.working_width, settings.working_height)
+    print("these horizontals ", settings.swatches_horizontal, settings.swatches_vertical)
     print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
