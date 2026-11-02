@@ -391,12 +391,17 @@ def segmenter_default(
     plt.scatter(clusters3[:, 0], clusters3[:, 1], color='red', s=100, edgecolors='black', zorder=5)
     plt.title("check before the filterings")
     """
+    themaximumswidths=0
+    themaximumsheights=0
     for cluster in clusters[:]:
         #print("going into the minarearect", cluster)
         x, y, w, h = cv2.boundingRect(cluster)
         cx = x + (w / 2.0)
         cy = y + (h / 2.0)
         print("the widths and heights of the clusters are ", w, h)
+        if(w>themaximumswidths and h>themaximumsheights):
+            themaximumswidths=w
+            themaximumsheights=h
         rectangle=((cx, cy), (w, h), 0.0)
         width = max(rectangle[1][0], rectangle[1][1])
         height = min(rectangle[1][0], rectangle[1][1])
@@ -404,6 +409,7 @@ def segmenter_default(
         #print("minimum",settings.aspect_ratio_minimum, "maximum", settings.aspect_ratio_maximum, "ratios", ratio)
         #if settings.aspect_ratio_minimum < ratio < settings.aspect_ratio_maximum:
         filtered_clusters.append(as_int32_array(cluster))
+    print("the maximums widths and heights are ", themaximumswidths, themaximumsheights)
     print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
