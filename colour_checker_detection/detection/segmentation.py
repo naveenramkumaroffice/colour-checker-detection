@@ -380,7 +380,7 @@ def segmenter_default(
     clusters = cluster_swatches(
         as_float32_array(image), swatches, settings.swatch_contour_scale
     )
-    #print("these clusters are these", clusters)
+    print("these clusters are these", clusters)
     # Filtering clusters using their aspect ratio.
     filtered_clusters = []
     """
@@ -403,7 +403,7 @@ def segmenter_default(
         #print("minimum",settings.aspect_ratio_minimum, "maximum", settings.aspect_ratio_maximum, "ratios", ratio)
         #if settings.aspect_ratio_minimum < ratio < settings.aspect_ratio_maximum:
         filtered_clusters.append(as_int32_array(cluster))
-    #print("the filtered clusters arrays", filtered_clusters)
+    print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
     # Filtering swatches within cluster.
