@@ -413,6 +413,8 @@ def segmenter_default(
     if(themaximumswidths<themaximumsheights):
         settings.working_width, settings.working_height=settings.working_height, settings.working_width
         settings.swatches_horizontal, settings.swatches_vertical=settings.swatches_vertical, settings.swatches_horizontal
+    print("these settings widths and heights ", settings.working_width, settings.working_height)
+    print("these horizontals ", settings.swatches_horizontal, settings.swatches_vertical)
     print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
