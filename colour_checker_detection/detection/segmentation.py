@@ -410,6 +410,9 @@ def segmenter_default(
         #if settings.aspect_ratio_minimum < ratio < settings.aspect_ratio_maximum:
         filtered_clusters.append(as_int32_array(cluster))
     print("the maximums widths and heights are ", themaximumswidths, themaximumsheights)
+    if(themaximumswidths<themaximumsheights):
+        settings.working_width, settings.working_height=settings.working_height, settings.working_width
+        settings.swatches_horizontal, settings.swatches_vertical=settings.swatches_vertical, settings.swatches_horizontal
     print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
