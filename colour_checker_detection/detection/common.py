@@ -1371,7 +1371,7 @@ def sample_colour_checker(
         (working_width, working_height),
         flags=settings.interpolation_method,
     )
-    """
+    
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image)
@@ -1388,10 +1388,10 @@ def sample_colour_checker(
     for i, (x, y) in enumerate(rectangle):
     # Label each point with an offset so the text doesn't overlap the dot
         plt.text(x + 15, y - 15, f"P{i}: ({x}, {y})", color='lime', fontsize=10, fontweight='bold', bbox=dict(facecolor='black', alpha=0.6, boxstyle='round,pad=0.3'))
-    plt.title("before the transforms")
+    plt.title("before the transforms and after the warps")
     plt.axis("off")
     plt.show()
-    """
+    
     if settings.transform:
         print("we are transforming the images in the settings transforms")
         colour_checker = transform_image(colour_checker, **settings.transform)
