@@ -843,9 +843,10 @@ def detect_colour_checkers_segmentation(
     settings = Structure(**SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC)
     settings.update(**kwargs)
 
-    swatches_h = settings.swatches_horizontal
-    swatches_v = settings.swatches_vertical
-
+    #swatches_h = settings.swatches_horizontal
+    #swatches_v = settings.swatches_vertical
+    swatches_h=horizontals[0]
+    swatches_v=horizontals[1]
     if isinstance(image, str):
         image = read_image(image)
     else:
