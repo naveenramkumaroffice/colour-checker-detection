@@ -1247,6 +1247,10 @@ def sample_colour_checker(
     quadrilateral: ArrayLike,
     rectangle: ArrayLike,
     samples: int = 32,
+    widths: int,
+    heights: int,
+    horizontals: int, 
+    verticals: int,
     **kwargs: Any,
 ) -> DataDetectionColourChecker:
     """
@@ -1350,10 +1354,14 @@ def sample_colour_checker(
     quadrilateral = as_float32_array(quadrilateral)
     rectangle = as_float32_array(rectangle)
 
-    swatches_horizontal = settings.swatches_horizontal
-    swatches_vertical = settings.swatches_vertical
-    working_width = settings.working_width
-    working_height = settings.working_height
+    #swatches_horizontal = settings.swatches_horizontal
+    #swatches_vertical = settings.swatches_vertical
+    #working_width = settings.working_width
+    #working_height = settings.working_height
+    swatches_horizontal=horizontals
+    swatches_vertical=verticals
+    working_width=widths
+    working_height=heights
     print("before the perspective transforms")
     transform = cv2.getPerspectiveTransform(quadrilateral, rectangle)
     print("the transforms are", transform)
