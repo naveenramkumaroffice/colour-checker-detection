@@ -1247,10 +1247,10 @@ def sample_colour_checker(
     quadrilateral: ArrayLike,
     rectangle: ArrayLike,
     samples: int = 32,
-    widths: int,
-    heights: int,
-    horizontals: int, 
-    verticals: int,
+    widths: int=0,
+    heights: int=0,
+    horizontals: int=0, 
+    verticals: int=0,
     **kwargs: Any,
 ) -> DataDetectionColourChecker:
     """
