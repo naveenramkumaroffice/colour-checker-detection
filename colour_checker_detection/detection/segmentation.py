@@ -845,8 +845,6 @@ def detect_colour_checkers_segmentation(
 
     #swatches_h = settings.swatches_horizontal
     #swatches_v = settings.swatches_vertical
-    swatches_h=horizontals[0]
-    swatches_v=horizontals[1]
     if isinstance(image, str):
         image = read_image(image)
     else:
@@ -888,6 +886,8 @@ def detect_colour_checkers_segmentation(
     plt.axis("off")    # Remove pixel coordinate borders
     plt.title("images before the plottings")
     plt.show()
+    swatches_h=horizontals[0]
+    swatches_v=horizontals[1]
     if show:
         plot_detection_results(
             tuple(colour_checkers_data),
