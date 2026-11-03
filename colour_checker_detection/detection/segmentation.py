@@ -144,8 +144,8 @@ if is_documentation_building():  # pragma: no cover
     SETTINGS_SEGMENTATION_COLORCHECKER_NANO.__doc__ = """
 Settings for the segmentation of the *X-Rite* *ColorChecker Nano**.
 """
-#widths=[settings.working_width, settings.working_height]
-#horizontals=[settings.swatches_horizontal, settings.swatches_vertical]
+widths=[0, 0]
+horizontals=[0, 0]
 @typing.overload
 def segmenter_default(
     image: ArrayLike,
@@ -410,11 +410,15 @@ def segmenter_default(
         #if settings.aspect_ratio_minimum < ratio < settings.aspect_ratio_maximum:
         filtered_clusters.append(as_int32_array(cluster))
     print("the maximums widths and heights are ", themaximumswidths, themaximumsheights)
+    widths[0]=settings.working_width
+    widths[1]=settings.working_height
+    horizontals[0]=settings.swatches_horizontal
+    horizontals[1]=settings.swatches_vertical
     if(themaximumswidths<themaximumsheights):
-        settings.working_width, settings.working_height=settings.working_height, settings.working_width
-        settings.swatches_horizontal, settings.swatches_vertical=settings.swatches_vertical, settings.swatches_horizontal
-    print("these settings widths and heights ", settings.working_width, settings.working_height)
-    print("these horizontals ", settings.swatches_horizontal, settings.swatches_vertical)
+        widths[0], widths[1]=widths[1], widths[0]
+        horizontals[0], horizontals[1]=horizontals[1], horizontals[0]
+    print("these settings widths and heights ", widths[0], widths[1])
+    print("these horizontals ", horizontals[0], horizontals[1])
     print("the filtered clusters arrays", filtered_clusters)
     clusters = as_int32_array(filtered_clusters)
 
@@ -593,22 +597,24 @@ def extractor_segmentation(
     settings.update(kwargs)
     #settings = Structure(**SETTINGS_SEGMENTATION_COLORCHECKER_CLASSIC)
     #settings.update(**kwargs)
-    working_height = int(settings["working_width"] / settings["aspect_ratio"])
+    #working_height = int(settings["working_width"] / settings["aspect_ratio"])
+    working_width=widths[0]
+    working_height=widths[1]
     image = reformat_image(
-        image, settings["working_width"], settings["interpolation_method"]
+        image, working_width, settings["interpolation_method"]
     )
 
     rectangle = as_int32_array(
         [
             [0, working_height],
             [0, 0],
-            [settings["working_width"], 0],
-            [settings["working_width"], working_height],
+            [working_width, 0],
+            [working_width, working_height],
         ]
     )
 
     colour_checkers_data = []
-    print("working widths", settings["working_width"])
+    print("working widths", working_width)
     print("working heights", working_height)
     print("source quadrilaterals")
     #for quadrilateral in segmentation_data.rectangles:
@@ -617,12 +623,12 @@ def extractor_segmentation(
     #print("destinations", rectangle)
     if hasattr(segmentation_data, "rectangles"):
         colour_checkers_data.extend(
-            sample_colour_checker(image, quadrilateral, rectangle, samples, **settings)
+            sample_colour_checker(image, quadrilateral, rectangle, samples, working_width, working_height, horizontals[0], horizontals[1], **settings)
             for quadrilateral in segmentation_data.rectangles
         )
     else:
         colour_checkers_data.extend(
-            sample_colour_checker(image, quadrilateral, rectangle, samples, **settings)
+            sample_colour_checker(image, quadrilateral, rectangle, samples, working_width, working_height, horizontals[0], horizontals[1], **settings)
             for quadrilateral in segmentation_data
         )
 
