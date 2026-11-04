@@ -1365,6 +1365,8 @@ def sample_colour_checker(
     print("before the perspective transforms")
     transform = cv2.getPerspectiveTransform(quadrilateral, rectangle)
     print("the transforms are", transform)
+    print("the quadrilaterals are ", quadrilateral)
+    print("the rectangles are ", rectangle)
     colour_checker = cv2.warpPerspective(
         image,
         transform,
