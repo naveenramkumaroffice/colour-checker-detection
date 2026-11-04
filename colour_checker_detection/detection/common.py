@@ -423,7 +423,7 @@ def reformat_image(
     image = np.asarray(image)
     
     import matplotlib.pyplot as plt
-
+    print("inside the resizings ", image.shape, target_width) 
     # Directly plot your high-precision array
     plt.figure(figsize=(10, 8))
     plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
@@ -443,7 +443,14 @@ def reformat_image(
         print("there are the no rotations")
 
     ratio = width / target_width
+    thenews=cv2.resize(image,(target_width, int(height / ratio)), interpolation=interpolation_method,)  # Matplotlib loves 0.0-1.0 float32 arrays natively
 
+    plt.figure(figsize=(10, 8))
+    plt.imshow(thenews)
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("images afters")
+    plt.show()
+    print("afters ", thenews.shape) 
     return cv2.resize(  # pyright: ignore
         image,
         (target_width, int(height / ratio)),
