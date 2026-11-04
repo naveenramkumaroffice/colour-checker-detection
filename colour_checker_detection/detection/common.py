@@ -1367,6 +1367,16 @@ def sample_colour_checker(
     print("the transforms are", transform)
     print("the quadrilaterals are ", quadrilateral)
     print("the rectangles are ", rectangle)
+    plt.figure(figsize=(10, 8))
+    plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("just before the perspectives 10 8")
+    plt.show()
+    plt.figure(figsize=(8, 8))
+    plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("just before the perspectives 8 8")
+    plt.show()
     colour_checker = cv2.warpPerspective(
         image,
         transform,
