@@ -1383,7 +1383,11 @@ def sample_colour_checker(
         (working_width, working_height),
         flags=settings.interpolation_method,
     )
-    
+    plt.figure(figsize=(8, 8))
+    plt.imshow(image)  # Matplotlib loves 0.0-1.0 float32 arrays natively
+    plt.axis("off")    # Remove pixel coordinate borders
+    plt.title("just after the perspectives 8 8")
+    plt.show()
     import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image)
