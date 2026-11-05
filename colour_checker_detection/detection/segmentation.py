@@ -601,8 +601,8 @@ def extractor_segmentation(
     working_width=widths[0]
     working_height=widths[1]
     #image = reformat_image(
-        image, working_width, settings["interpolation_method"]
-    )
+    #    image, working_width, settings["interpolation_method"]
+    #)
 
     rectangle = as_int32_array(
         [
