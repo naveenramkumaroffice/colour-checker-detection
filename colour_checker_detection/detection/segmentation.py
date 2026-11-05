@@ -333,8 +333,8 @@ def segmenter_default(
     plt.title("these images")
     plt.show()
     """
-    print("before the reformats images")
-    image = reformat_image(image, settings.working_width, settings.interpolation_method)
+    #print("before the reformats images")
+    #image = reformat_image(image, settings.working_width, settings.interpolation_method)
 
     width, height = image.shape[1], image.shape[0]
     minimum_area = (
