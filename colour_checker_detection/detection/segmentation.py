@@ -600,9 +600,9 @@ def extractor_segmentation(
     #working_height = int(settings["working_width"] / settings["aspect_ratio"])
     working_width=widths[0]
     working_height=widths[1]
-    #image = reformat_image(
-    #    image, working_width, settings["interpolation_method"]
-    #)
+    image = reformat_image(
+        image, working_width, settings["interpolation_method"]
+    )
 
     rectangle = as_int32_array(
         [
@@ -864,7 +864,10 @@ def detect_colour_checkers_segmentation(
     segmentation_colour_checkers_data = segmenter(
         image, additional_data=True, **{**segmenter_kwargs, **settings}
     )
-
+    image = reformat_image(image, widths[0], settings.interpolation_method)
+    segmentation_colour_checkers_data = segmenter(
+        image, additional_data=True, **{**segmenter_kwargs, **settings}
+    )
     extractor_kwargs = cast("Dict[str, Any]", optional(extractor_kwargs, {}))
 
     colour_checkers_data = list(
