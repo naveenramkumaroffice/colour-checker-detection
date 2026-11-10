@@ -648,22 +648,39 @@ def detect_contours(
 
     settings = Structure(**SETTINGS_CONTOUR_DETECTION_DEFAULT)
     settings.update(**kwargs)
-
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(8,8))
+    plt.imshow(image)
+    plt.title("beginnings inputs")
+    plt.axis("off")
+    plt.show()
     image_g = np.max(image, axis=-1)
 
     # Normalisation
     image_g = (
         linear_conversion(image_g, (np.min(image_g), np.max(image_g)), (0, 1)) * 255
     ).astype(np.uint8)
-
+    plt.figure(figsize=(8,8))
+    plt.imshow(image_g)
+    plt.title("image_g")
+    plt.axis("off")
+    plt.show()
     # Denoising
     image_d = image_g
     for _ in range(settings.bilateral_filter_iterations):
         image_d = cv2.bilateralFilter(image_d, -1, **settings.bilateral_filter_kwargs)
-
+    plt.figure(figsize=(8,8))
+    plt.imshow(image_d)
+    plt.title("image_d")
+    plt.axis("off")
+    plt.show()
     # Thresholding
     image_t = cv2.adaptiveThreshold(image_d, **settings.adaptive_threshold_kwargs)
-
+    plt.figure(figsize=(8,8))
+    plt.imshow(image_t)
+    plt.title("image_t")
+    plt.axis("off")
+    plt.show()
     # Erosion / Dilation
     image_k = cv2.erode(
         image_t,
@@ -687,7 +704,6 @@ def detect_contours(
     print("the final images after the finding the contours")
 
     
-    import matplotlib.pyplot as plt
     plt.figure(figsize=(8,8))
     plt.imshow(image_k)
     plt.title("these finals images")
