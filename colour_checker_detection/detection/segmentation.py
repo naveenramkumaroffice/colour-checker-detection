@@ -347,6 +347,8 @@ def segmenter_default(
     plt.imshow(image)
 
 # 3. Loop through and plot the points of each contour
+    colours=["blue", "green", "red", "cyan", "magenta", "yellow"]
+    index=0
     for cnt in contours:
         # Squeeze changes the shape from (N, 1, 2) to (N, 2)
         points = cnt.squeeze()
@@ -359,8 +361,11 @@ def segmenter_default(
             y = points[:, 1]
         
         # Plot as individual dots (s controls the marker size)
-        plt.scatter(x, y, color='cyan', s=2, marker='o')
-    
+        plt.scatter(x, y, color=colours[index], s=2, marker='o')
+        if(index==len(colours)-1):
+            index=0
+        else:
+            index=index+1
     # 3. Show the final plot
     plt.axis('off')  # Removes the axis grid/pixel values
     plt.show()
