@@ -865,15 +865,16 @@ def detect_colour_checkers_segmentation(
     image = cast("NDArrayReal", image)
     print("before the reformats functions")
     #image = reformat_image(image, settings.working_width, settings.interpolation_method)
-
+    print("before the firsts", image.shape)
     segmentation_colour_checkers_data = segmenter(
         image, additional_data=True, **{**segmenter_kwargs, **settings}
     )
     #image = reformat_image(image, widths[0], settings.interpolation_method)
-    #print("----------------------doing the images in these ", widths[0], "-----------------------------------------------")
-    #segmentation_colour_checkers_data = segmenter(
-        #image, additional_data=True, **{**segmenter_kwargs, **settings}
-    #)
+    print("----------------------doing the images in these ", widths[0], "-----------------------------------------------")
+    print("before the seconds", image.shape)
+    segmentation_colour_checkers_data = segmenter(
+        image, additional_data=True, **{**segmenter_kwargs, **settings}
+    )
     extractor_kwargs = cast("Dict[str, Any]", optional(extractor_kwargs, {}))
 
     colour_checkers_data = list(
